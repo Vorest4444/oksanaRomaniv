@@ -1,17 +1,31 @@
 import { Resend } from 'resend'
-import type { Handler, HandlerEvent } from '@netlify/functions'
-
-const resend = new Resend(process.env.RESEND_API_KEY)
+import type { Handler, HandlerEvent, HandlerContext } from '@netlify/functions'
 
 // TODO: Замініть на актуальні дані
-const FROM_EMAIL = 'Оксана Романів <onboarding@resend.dev>' // Змініть на ваш верифікований домен
-const VIDEO_URL = 'https://www.youtube.com/watch?v=XqZsoesa55w' // Замініть на посилання на відео
+const FROM_EMAIL = 'Оксана Романів <onboarding@resend.dev>' 
+const VIDEO_URL = 'https://www.youtube.com/watch?v=XqZsoesa55w' 
 
-const handler: Handler = async (event: HandlerEvent) => {
+const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
+  // Initialize Resend inside handler to ensure env var is available
+  const resend = new Resend(process.env.RESEND_API_KEY)
+  
+  // Add CORS headers
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Content-Type': 'application/json',
+  }
+
+  // Handle preflight
+  if (event.httpMethod === 'OPTIONS') {
+    return { statusCode: 200, headers, body: '' }
+  }
   // Тільки POST запити
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
+      headers,
       body: JSON.stringify({ error: 'Method not allowed' }),
     }
   }
@@ -23,6 +37,7 @@ const handler: Handler = async (event: HandlerEvent) => {
     if (!name || !email) {
       return {
         statusCode: 400,
+        headers,
         body: JSON.stringify({ error: 'Name and email are required' }),
       }
     }
@@ -129,26 +144,26 @@ const handler: Handler = async (event: HandlerEvent) => {
       console.error('Resend error:', error)
       return {
         statusCode: 500,
-        body: JSON.stringify({ error: 'Failed to send email', details: error }),
+        headers,
+        body: JSON.stringify({ error: 'Failed to send email', details: error.message }),
       }
     }
 
     return {
       statusCode: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers,
       body: JSON.stringify({ 
         success: true, 
         message: 'Email sent successfully',
         id: data?.id 
       }),
     }
-  } catch (error) {
-    console.error('Function error:', error)
+  } catch (err) {
+    console.error('Function error:', err)
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Internal server error' }),
+      headers,
+      body: JSON.stringify({ error: 'Internal server error', details: err instanceof Error ? err.message : 'Unknown error' }),
     }
   }
 }
