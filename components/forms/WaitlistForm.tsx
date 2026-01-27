@@ -47,6 +47,7 @@ export function WaitlistForm({
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          name: formData.get('name'),
           email: formData.get('email'),
           interest: formData.get('interest'),
         }),
@@ -83,7 +84,14 @@ export function WaitlistForm({
               {error}
             </div>
           )}
-          
+
+          <FormField
+            label="Ім'я"
+            name="name"
+            type="text"
+            placeholder="Ваше ім'я"
+            required
+          />
           <FormField
             label="Email"
             name="email"

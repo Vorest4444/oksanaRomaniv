@@ -36,14 +36,16 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
       }
     }
 
-    // Map interest value to Ukrainian
+    const { name } = JSON.parse(event.body || '{}')
+
+    // Map interest value to Ukrainian for Airtable select field
     const interestMap: Record<string, string> = {
-      'leadership': 'Курс "Лідерство без вигорання"',
-      'membership': 'Membership "Коло розвитку"',
-      'both': 'Обидва продукти',
+      'leadership': 'Лідерський курс',
+      'membership': 'Коло учасників',
+      'both': 'Обидва',
     }
 
-    // Create record in Airtable
+    // Create record in Airtable with Ukrainian field names
     const response = await fetch(
       `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_WAITLIST_TABLE_ID}`,
       {
@@ -56,9 +58,11 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
           records: [
             {
               fields: {
-                'Email': email,
-                'Product Interest': interestMap[interest] || interest || 'Не вказано',
-                'Status': 'New',
+                "Ім'я": name || '',
+                'Електронна пошта': email,
+                'Інтерес до продукту': interestMap[interest] || interest || 'Не вказано',
+                'Дата подачі': new Date().toISOString().split('T')[0],
+                'Статус': 'Новий',
               },
             },
           ],
