@@ -5,6 +5,11 @@ import type { Handler, HandlerEvent, HandlerContext } from '@netlify/functions'
 const FROM_EMAIL = 'Оксана Романів <onboarding@resend.dev>' 
 const VIDEO_URL = 'https://www.youtube.com/watch?v=ityQC6vUzAo' 
 
+// Airtable config
+const AIRTABLE_TOKEN = process.env.AIRTABLE_TOKEN
+const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID
+const AIRTABLE_FREE_VIDEO_TABLE_ID = process.env.AIRTABLE_FREE_VIDEO_TABLE_ID
+
 const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
   // Initialize Resend inside handler to ensure env var is available
   const resend = new Resend(process.env.RESEND_API_KEY)
@@ -147,6 +152,34 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
         headers,
         body: JSON.stringify({ error: 'Failed to send email', details: error.message }),
       }
+    }
+
+    // Save to Airtable
+    try {
+      await fetch(
+        `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_FREE_VIDEO_TABLE_ID}`,
+        {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${AIRTABLE_TOKEN}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            records: [
+              {
+                fields: {
+                  "Ім'я": name,
+                  'Електронна пошта': email,
+                  'Дата подачі': new Date().toISOString().split('T')[0],
+                },
+              },
+            ],
+          }),
+        }
+      )
+    } catch (airtableErr) {
+      // Log but don't fail - email was already sent
+      console.error('Airtable save error:', airtableErr)
     }
 
     return {
