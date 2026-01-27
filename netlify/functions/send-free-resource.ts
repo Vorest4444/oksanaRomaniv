@@ -3,7 +3,7 @@ import type { Handler, HandlerEvent, HandlerContext } from '@netlify/functions'
 
 // TODO: Замініть на актуальні дані
 const FROM_EMAIL = 'Оксана Романів <onboarding@resend.dev>' 
-const VIDEO_URL = 'https://www.youtube.com/watch?v=XqZsoesa55w' 
+const VIDEO_URL = 'https://www.youtube.com/watch?v=ityQC6vUzAo' 
 
 const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
   // Initialize Resend inside handler to ensure env var is available
