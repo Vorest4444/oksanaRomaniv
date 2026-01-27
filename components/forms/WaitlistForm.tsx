@@ -30,21 +30,41 @@ export function WaitlistForm({
 }: WaitlistFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const form = e.currentTarget // Store reference before async
+    const form = e.currentTarget
+    const formData = new FormData(form)
+    
     setIsSubmitting(true)
+    setError(null)
 
-    // TODO: Netlify Forms integration
-    // Simulate form submission delay
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+      const response = await fetch('/api/submit-waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.get('email'),
+          interest: formData.get('interest'),
+        }),
+      })
 
-    setIsSubmitting(false)
-    setShowSuccess(true)
+      const data = await response.json()
 
-    // Reset form
-    form.reset()
+      if (!response.ok) {
+        throw new Error(data.error || 'Щось пішло не так')
+      }
+
+      setShowSuccess(true)
+      form.reset()
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Помилка відправки. Спробуйте ще раз.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -57,8 +77,12 @@ export function WaitlistForm({
           {description}
         </p>
 
-        <form onSubmit={handleSubmit} className="space-y-4" data-netlify="true" name={formName}>
-          <input type="hidden" name="form-name" value={formName} />
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {error && (
+            <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm">
+              {error}
+            </div>
+          )}
           
           <FormField
             label="Email"
