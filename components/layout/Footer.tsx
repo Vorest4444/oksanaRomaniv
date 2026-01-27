@@ -24,13 +24,13 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-accent-900 text-warm-200" aria-labelledby="footer-heading">
+    <footer className="bg-primary-900 text-primary-100" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
         Підвал сайту
       </h2>
 
-      <div className="container-custom py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+      <div className="container-custom py-8 md:py-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link
@@ -39,19 +39,18 @@ export function Footer() {
             >
               Оксана Романів
             </Link>
-            <p className="mt-4 text-warm-300 max-w-md leading-relaxed">
-              Допомагаю підприємцям та лідерам знайти ясність у бізнесі та житті. 
-              Разом ми створимо чіткий план для вашого успіху.
+            <p className="mt-3 text-primary-200 max-w-md text-sm leading-relaxed">
+              Допомагаю підприємцям та лідерам знайти ясність у бізнесі та житті.
             </p>
             {/* Social Links */}
-            <div className="flex items-center gap-4 mt-6">
+            <div className="flex items-center gap-3 mt-4">
               {footerLinks.social.map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-full bg-accent-800 text-warm-300 hover:bg-primary-600 hover:text-white transition-colors"
+                  className="p-2 rounded-full bg-primary-800 text-primary-200 hover:bg-white hover:text-primary-900 transition-colors"
                   aria-label={social.label}
                 >
                   <social.icon size={20} />
@@ -62,13 +61,13 @@ export function Footer() {
 
           {/* Navigation */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Навігація</h3>
-            <ul className="space-y-3">
+            <h3 className="text-white font-semibold text-sm mb-3">Навігація</h3>
+            <ul className="space-y-2">
               {footerLinks.navigation.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-warm-300 hover:text-primary-300 transition-colors"
+                    className="text-primary-200 hover:text-white transition-colors text-sm"
                   >
                     {link.label}
                   </Link>
@@ -79,13 +78,13 @@ export function Footer() {
 
           {/* Legal */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Інформація</h3>
-            <ul className="space-y-3">
+            <h3 className="text-white font-semibold text-sm mb-3">Інформація</h3>
+            <ul className="space-y-2">
               {footerLinks.legal.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-warm-300 hover:text-primary-300 transition-colors"
+                    className="text-primary-200 hover:text-white transition-colors text-sm"
                   >
                     {link.label}
                   </Link>
@@ -93,19 +92,19 @@ export function Footer() {
               ))}
             </ul>
             {/* Newsletter placeholder */}
-            <div className="mt-6">
-              <h4 className="text-white font-medium mb-2">Підписатись на оновлення</h4>
+            <div className="mt-4">
+              <h4 className="text-white font-medium text-sm mb-2">Підписатись</h4>
               {/* TODO: Netlify Forms integration */}
               <form className="flex gap-2">
                 <input
                   type="email"
                   placeholder="Ваш email"
-                  className="flex-1 px-3 py-2 rounded-lg bg-accent-800 border border-accent-700 text-white placeholder-warm-400 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  className="flex-1 px-3 py-2 rounded-lg bg-primary-800 border border-primary-700 text-white placeholder-primary-300 text-sm focus:outline-none focus:ring-2 focus:ring-white"
                   aria-label="Email для підписки"
                 />
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded-lg bg-primary-600 text-white text-sm font-medium hover:bg-primary-700 transition-colors"
+                  className="px-4 py-2 rounded-lg bg-white text-primary-900 text-sm font-medium hover:bg-primary-100 transition-colors"
                 >
                   OK
                 </button>
@@ -115,12 +114,12 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-accent-800 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-warm-400 text-sm">
+        <div className="mt-6 pt-6 border-t border-primary-800 flex flex-col md:flex-row items-center justify-between gap-3">
+          <p className="text-primary-300 text-sm">
             © {currentYear} Оксана Романів. Усі права захищено.
           </p>
-          <p className="text-warm-400 text-sm flex items-center gap-1">
-            Зроблено з <Heart size={14} className="text-primary-400" /> в Україні
+          <p className="text-primary-300 text-sm flex items-center gap-1">
+            Зроблено з <Heart size={14} className="text-white" /> в Україні
           </p>
         </div>
       </div>

@@ -26,7 +26,7 @@ const testimonials = [
 
 export function TestimonialsSection() {
   return (
-    <section className="section-padding bg-gradient-to-b from-white to-warm-50">
+    <section className="section-padding bg-gradient-to-b from-white to-primary-50">
       <div className="container-custom">
         <SectionHeader
           badge="Відгуки"

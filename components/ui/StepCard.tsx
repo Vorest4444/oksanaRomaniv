@@ -19,9 +19,9 @@ export function StepCard({
       <div className="relative inline-flex items-center justify-center mb-6">
         <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center">
           {icon ? (
-            <div className="text-primary-600">{icon}</div>
+            <div className="text-primary-700">{icon}</div>
           ) : (
-            <span className="text-2xl md:text-3xl font-display font-bold text-primary-600">
+            <span className="text-2xl md:text-3xl font-display font-bold text-primary-700">
               {number}
             </span>
           )}

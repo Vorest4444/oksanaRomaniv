@@ -38,7 +38,7 @@ export function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="font-display text-xl md:text-2xl font-semibold text-accent-900 hover:text-primary-600 transition-colors"
+            className="font-display text-xl md:text-2xl font-semibold text-primary-900 hover:text-primary-700 transition-colors"
             aria-label="Оксана Романів - На головну"
           >
             Оксана Романів
@@ -50,10 +50,10 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-accent-700 hover:text-primary-600 font-medium transition-colors relative group"
+                className="text-accent-700 hover:text-primary-700 font-medium transition-colors relative group"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-700 transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
           </div>
@@ -85,12 +85,12 @@ export function Navbar() {
             isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
-          <div className="py-4 space-y-1 border-t border-warm-200">
+          <div className="py-4 space-y-1 border-t border-primary-100">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="block py-3 px-4 text-accent-700 hover:text-primary-600 hover:bg-warm-100 rounded-lg font-medium transition-colors"
+                className="block py-3 px-4 text-accent-700 hover:text-primary-700 hover:bg-primary-50 rounded-lg font-medium transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.label}

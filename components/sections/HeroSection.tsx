@@ -1,16 +1,10 @@
+import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
-import { ImagePlaceholder } from '@/components/ui/ImagePlaceholder'
 import { Sparkles, Users, Target } from 'lucide-react'
 
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-warm-100 via-warm-50 to-primary-50/30 -z-10" />
-      
-      {/* Decorative elements */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary-200/20 rounded-full blur-3xl -z-10" />
-      <div className="absolute bottom-1/4 left-0 w-64 h-64 bg-primary-100/30 rounded-full blur-2xl -z-10" />
 
       <div className="container-custom section-padding">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -38,11 +32,11 @@ export function HeroSection() {
             {/* Value propositions */}
             <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-6">
               <div className="flex items-center gap-2 text-accent-700">
-                <Target size={20} className="text-primary-500" />
+                <Target size={20} className="text-primary-700" />
                 <span>Бізнес-рішення</span>
               </div>
               <div className="flex items-center gap-2 text-accent-700">
-                <Users size={20} className="text-primary-500" />
+                <Users size={20} className="text-primary-700" />
                 <span>Самопізнання</span>
               </div>
             </div>
@@ -61,18 +55,22 @@ export function HeroSection() {
           {/* Image */}
           <div className="animate-slide-up relative">
             <div className="relative">
-              {/* Main image placeholder */}
-              <ImagePlaceholder
-                aspectRatio="portrait"
-                label="Фото Оксани"
-                className="shadow-2xl shadow-accent-900/10"
-              />
+              {/* Main image */}
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl shadow-2xl shadow-accent-900/10">
+                <Image
+                  src="/photo/2.jpg"
+                  alt="Оксана Романів - бізнес-ментор та коуч"
+                  fill
+                  className="object-cover object-top"
+                  priority
+                />
+              </div>
               
               {/* Floating cards */}
               <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-4 animate-fade-in">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
-                    <span className="text-green-600 text-xl font-bold">✓</span>
+                  <div className="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center">
+                    <span className="text-primary-700 text-xl font-bold">✓</span>
                   </div>
                   <div>
                     <p className="font-semibold text-accent-900">100+</p>
@@ -84,7 +82,7 @@ export function HeroSection() {
               <div className="absolute -top-4 -right-4 bg-white rounded-2xl shadow-xl p-4 animate-fade-in">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center">
-                    <span className="text-primary-600 text-xl">⭐</span>
+                    <span className="text-primary-700 text-xl">⭐</span>
                   </div>
                   <div>
                     <p className="font-semibold text-accent-900">5+ років</p>

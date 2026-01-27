@@ -30,7 +30,7 @@ export function FAQAccordion({ items, className = '' }: FAQAccordionProps) {
           <button
             type="button"
             onClick={() => toggleItem(idx)}
-            className="w-full p-5 md:p-6 flex items-center justify-between gap-4 text-left hover:bg-warm-50 transition-colors"
+            className="w-full p-5 md:p-6 flex items-center justify-between gap-4 text-left hover:bg-primary-50 transition-colors"
             aria-expanded={openIndex === idx}
             aria-controls={`faq-answer-${idx}`}
           >

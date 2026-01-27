@@ -59,7 +59,7 @@ export function Modal({
           <button
             type="button"
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 rounded-full text-accent-400 hover:text-accent-600 hover:bg-warm-100 transition-colors"
+            className="absolute top-4 right-4 p-2 rounded-full text-accent-400 hover:text-accent-600 hover:bg-primary-50 transition-colors"
             aria-label="Закрити"
           >
             <X size={20} />
@@ -99,8 +99,8 @@ export function SuccessModal({
   return (
     <Modal isOpen={isOpen} onClose={onClose} showCloseButton={false}>
       <div className="text-center">
-        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
-          <CheckCircle size={32} className="text-green-600" />
+        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary-100 flex items-center justify-center">
+          <CheckCircle size={32} className="text-primary-700" />
         </div>
         <h2 className="text-2xl font-display font-semibold text-accent-900 mb-2">
           {title}

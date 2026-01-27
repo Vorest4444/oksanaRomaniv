@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Image from 'next/image'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { ImagePlaceholder } from '@/components/ui/ImagePlaceholder'
 import { CTASection } from '@/components/ui/CTASection'
@@ -43,16 +44,20 @@ export default function AboutPage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24 bg-gradient-to-b from-warm-100 to-warm-50">
+      <section className="pt-32 pb-16 md:pt-40 md:pb-24 bg-gradient-to-b from-primary-50 to-white">
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Image */}
             <div className="order-2 lg:order-1">
-              <ImagePlaceholder
-                aspectRatio="portrait"
-                label="Фото Оксани Романів"
-                className="shadow-2xl shadow-accent-900/10"
-              />
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl shadow-2xl shadow-accent-900/10">
+                <Image
+                  src="/photo/1.jpg"
+                  alt="Оксана Романів - бізнес-ментор та коуч"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
             </div>
 
             {/* Content */}
@@ -61,7 +66,7 @@ export default function AboutPage() {
               <h1 className="text-4xl md:text-5xl font-display font-bold text-accent-900 leading-tight">
                 Оксана Романів
               </h1>
-              <p className="mt-2 text-xl text-primary-600 font-medium">
+              <p className="mt-2 text-xl text-primary-700 font-medium">
                 Бізнес-ментор та коуч
               </p>
               <div className="mt-6 space-y-4 text-accent-600 leading-relaxed">
@@ -85,14 +90,14 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 bg-white border-y border-warm-200">
+      <section className="py-12 bg-white border-y border-primary-100">
         <div className="container-custom">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, idx) => {
               const IconComponent = stat.icon
               return (
                 <div key={idx} className="text-center">
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-100 text-primary-600 mb-3">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-100 text-primary-700 mb-3">
                     <IconComponent size={20} />
                   </div>
                   <p className="text-3xl md:text-4xl font-display font-bold text-accent-900">
@@ -134,7 +139,7 @@ export default function AboutPage() {
               </p>
               
               {/* Education/Certifications placeholder */}
-              <div className="mt-8 p-6 bg-warm-100 rounded-2xl">
+              <div className="mt-8 p-6 bg-primary-50 rounded-2xl">
                 <h3 className="font-semibold text-accent-900 mb-4">Освіта та сертифікації</h3>
                 <ul className="space-y-2 text-accent-700">
                   {/* TODO: Add actual certifications */}
@@ -150,7 +155,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values Section */}
-      <section className="section-padding bg-warm-50">
+      <section className="section-padding bg-primary-50/50">
         <div className="container-custom">
           <SectionHeader
             badge="Цінності"
@@ -163,7 +168,7 @@ export default function AboutPage() {
               const IconComponent = value.icon
               return (
                 <article key={idx} className="card p-6 text-center">
-                  <div className="w-14 h-14 mx-auto rounded-2xl bg-primary-100 flex items-center justify-center text-primary-600 mb-4">
+                  <div className="w-14 h-14 mx-auto rounded-2xl bg-primary-100 flex items-center justify-center text-primary-700 mb-4">
                     <IconComponent size={24} />
                   </div>
                   <h3 className="text-xl font-display font-semibold text-accent-900 mb-2">

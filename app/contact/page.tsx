@@ -54,7 +54,7 @@ export default function ContactPage() {
   return (
     <div>
       {/* Header */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-20 bg-gradient-to-b from-warm-100 to-warm-50">
+      <section className="pt-32 pb-16 md:pt-40 md:pb-20 bg-gradient-to-b from-primary-50 to-white">
         <div className="container-custom text-center">
           <span className="badge-primary mb-4">Контакти</span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-accent-900 leading-tight">
@@ -83,7 +83,7 @@ export default function ContactPage() {
                     const IconComponent = item.icon
                     return (
                       <div key={idx} className="flex items-start gap-4">
-                        <div className="p-3 rounded-xl bg-primary-100 text-primary-600">
+                        <div className="p-3 rounded-xl bg-primary-100 text-primary-700">
                           <IconComponent size={24} />
                         </div>
                         <div>
@@ -130,7 +130,7 @@ export default function ContactPage() {
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-4 p-4 rounded-xl bg-warm-100 hover:bg-warm-200 transition-colors group"
+                        className="flex items-center gap-4 p-4 rounded-xl bg-primary-50 hover:bg-primary-100 transition-colors group"
                       >
                         <div className="text-accent-600 group-hover:text-primary-600 transition-colors">
                           <IconComponent size={24} />
@@ -228,7 +228,7 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="section-padding bg-warm-50">
+      <section className="section-padding bg-primary-50/50">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-2xl md:text-3xl font-display font-semibold text-accent-900 mb-4">

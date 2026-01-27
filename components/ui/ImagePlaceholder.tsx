@@ -20,12 +20,12 @@ export function ImagePlaceholder({
 
   return (
     <div
-      className={`${aspectClasses[aspectRatio]} bg-gradient-to-br from-warm-200 to-warm-300 rounded-2xl flex flex-col items-center justify-center gap-2 ${className}`}
+      className={`${aspectClasses[aspectRatio]} bg-gradient-to-br from-primary-100 to-primary-200 rounded-2xl flex flex-col items-center justify-center gap-2 ${className}`}
       aria-label={label}
       role="img"
     >
-      <ImageIcon size={32} className="text-warm-500" />
-      <span className="text-sm text-warm-500">{label}</span>
+      <ImageIcon size={32} className="text-primary-500" />
+      <span className="text-sm text-primary-500">{label}</span>
     </div>
   )
 }

@@ -9,7 +9,7 @@ export function SocialProofSection() {
   ]
 
   return (
-    <section className="py-12 md:py-16 bg-white border-y border-warm-200">
+    <section className="py-12 md:py-16 bg-white border-y border-primary-100">
       <div className="container-custom">
         <p className="text-center text-sm text-accent-500 uppercase tracking-wider mb-8">
           Довіряють підприємці та компанії
@@ -19,7 +19,7 @@ export function SocialProofSection() {
           {logos.map((logo, idx) => (
             <div
               key={idx}
-              className="w-24 h-12 md:w-32 md:h-14 bg-warm-100 rounded-lg flex items-center justify-center text-warm-400 text-sm font-medium"
+              className="w-24 h-12 md:w-32 md:h-14 bg-primary-50 rounded-lg flex items-center justify-center text-primary-400 text-sm font-medium"
               aria-label={logo.name}
             >
               {/* TODO: Replace with actual logo images */}

@@ -24,26 +24,46 @@ export function LeadCaptureForm({
 }: LeadCaptureFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setIsSubmitting(true)
-
-    // TODO: Netlify Forms integration
-    // Simulate form submission delay
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-
-    setIsSubmitting(false)
-    setShowSuccess(true)
-
-    // Reset form
     const form = e.currentTarget
-    form.reset()
+    const formData = new FormData(form)
+    
+    setIsSubmitting(true)
+    setError(null)
+
+    try {
+      const response = await fetch('/api/send-free-resource', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.get('name'),
+          email: formData.get('email'),
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Щось пішло не так')
+      }
+
+      setShowSuccess(true)
+      form.reset()
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Помилка відправки. Спробуйте ще раз.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
     <>
-      <div className="card p-6 md:p-8 lg:sticky lg:top-24">
+      <div className="card p-6 md:p-8">
         <h3 className="text-xl font-display font-semibold text-accent-900 mb-4">
           {title}
         </h3>
@@ -51,8 +71,12 @@ export function LeadCaptureForm({
           {description}
         </p>
 
-        <form onSubmit={handleSubmit} className="space-y-4" data-netlify="true" name={formName}>
-          <input type="hidden" name="form-name" value={formName} />
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {error && (
+            <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm">
+              {error}
+            </div>
+          )}
           
           <FormField
             label="Ваше імя"

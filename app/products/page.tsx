@@ -24,7 +24,6 @@ const freeProducts = [
     targetAudience: 'Початківці підприємці, ті хто хоче систематизувати бізнес, фрілансери.',
     badge: 'Безкоштовно',
     type: 'free' as const,
-    ctaText: 'Отримати зараз',
   },
 ]
 
@@ -102,7 +101,7 @@ export default function ProductsPage() {
   return (
     <>
       {/* Header */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-20 bg-gradient-to-b from-warm-100 to-warm-50">
+      <section className="pt-32 pb-16 md:pt-40 md:pb-20 bg-gradient-to-b from-primary-50 to-white">
         <div className="container-custom text-center">
           <span className="badge-primary mb-4">Продукти</span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-accent-900 leading-tight">
@@ -116,11 +115,11 @@ export default function ProductsPage() {
       </section>
 
       {/* Free Products */}
-      <section id="free" className="section-padding bg-green-50/30 scroll-mt-24">
+      <section id="free" className="section-padding bg-primary-50/50 scroll-mt-24">
         <div className="container-custom">
           <div className="flex items-center gap-3 mb-8">
-            <div className="p-2 rounded-xl bg-green-100">
-              <Gift className="text-green-600" size={24} />
+            <div className="p-2 rounded-xl bg-primary-100">
+              <Gift className="text-primary-700" size={24} />
             </div>
             <h2 className="text-2xl md:text-3xl font-display font-semibold text-accent-900">
               Безкоштовні ресурси
@@ -135,7 +134,9 @@ export default function ProductsPage() {
             </div>
 
             {/* Lead Capture Form */}
-            <LeadCaptureForm />
+            <div className="lg:sticky lg:top-24">
+              <LeadCaptureForm />
+            </div>
           </div>
         </div>
       </section>
@@ -145,7 +146,7 @@ export default function ProductsPage() {
         <div className="container-custom">
           <div className="flex items-center gap-3 mb-8">
             <div className="p-2 rounded-xl bg-primary-100">
-              <ShoppingBag className="text-primary-600" size={24} />
+              <ShoppingBag className="text-primary-700" size={24} />
             </div>
             <h2 className="text-2xl md:text-3xl font-display font-semibold text-accent-900">
               Платні продукти
@@ -164,7 +165,7 @@ export default function ProductsPage() {
           </div>
 
           {/* Payment info */}
-          <div className="mt-8 p-4 bg-warm-100 rounded-xl text-center">
+          <div className="mt-8 p-4 bg-primary-50 rounded-xl text-center">
             <p className="text-sm text-accent-600">
               💳 Приймаємо картки Visa, Mastercard. Безпечна оплата через Stripe.
             </p>
@@ -173,11 +174,11 @@ export default function ProductsPage() {
       </section>
 
       {/* Upcoming Products */}
-      <section id="upcoming" className="section-padding bg-amber-50/30 scroll-mt-24">
+      <section id="upcoming" className="section-padding bg-primary-100/30 scroll-mt-24">
         <div className="container-custom">
           <div className="flex items-center gap-3 mb-8">
-            <div className="p-2 rounded-xl bg-amber-100">
-              <Clock className="text-amber-600" size={24} />
+            <div className="p-2 rounded-xl bg-primary-200">
+              <Clock className="text-primary-800" size={24} />
             </div>
             <h2 className="text-2xl md:text-3xl font-display font-semibold text-accent-900">
               Скоро в продажу
@@ -186,12 +187,12 @@ export default function ProductsPage() {
 
           <div className="grid md:grid-cols-2 gap-8">
             {upcomingProducts.map((product, idx) => (
-              <ProductCard key={idx} {...product} />
+              <ProductCard key={idx} {...product} ctaHref="#waitlist" />
             ))}
           </div>
 
           {/* Waitlist Form */}
-          <div className="mt-12 max-w-xl mx-auto">
+          <div id="waitlist" className="mt-12 max-w-xl mx-auto scroll-mt-24">
             <WaitlistForm />
           </div>
         </div>

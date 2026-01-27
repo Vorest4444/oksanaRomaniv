@@ -24,27 +24,27 @@ export function CTASection({
   className = '',
 }: CTASectionProps) {
   const bgStyles = {
-    default: 'bg-accent-900 text-white',
-    gradient: 'bg-gradient-to-br from-primary-600 via-primary-500 to-primary-700 text-white',
+    default: 'bg-primary-900 text-white',
+    gradient: 'bg-gradient-to-br from-primary-700 via-primary-600 to-primary-800 text-white',
   }
 
   return (
     <section className={`${bgStyles[variant]} ${className}`}>
-      <div className="container-custom section-padding">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-semibold text-balance">
+      <div className="container-custom py-12 md:py-16">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-semibold text-balance">
             {title}
           </h2>
           {subtitle && (
-            <p className="mt-4 text-lg md:text-xl opacity-90 text-balance">
+            <p className="mt-3 text-base md:text-lg opacity-90 text-balance">
               {subtitle}
             </p>
           )}
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
             <Button
               variant={variant === 'gradient' ? 'secondary' : 'primary'}
               href={primaryCta.href}
-              size="lg"
+              size="md"
               showArrow
             >
               {primaryCta.text}
@@ -53,7 +53,7 @@ export function CTASection({
               <Button
                 variant="outline"
                 href={secondaryCta.href}
-                size="lg"
+                size="md"
                 className={variant === 'gradient' ? 'border-white/50 text-white hover:bg-white hover:text-primary-700' : 'border-white/30 text-white hover:bg-white hover:text-accent-900'}
               >
                 {secondaryCta.text}

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
+import { AnimatedBackground } from '@/components/ui/AnimatedBackground'
 
 export const metadata: Metadata = {
   title: 'Оксана Романів | Бізнес-ментор та коуч',
@@ -44,6 +45,7 @@ export default function RootLayout({
   return (
     <html lang="uk">
       <body className="min-h-screen flex flex-col">
+        <AnimatedBackground />
         <Navbar />
         <main className="flex-1">
           {children}

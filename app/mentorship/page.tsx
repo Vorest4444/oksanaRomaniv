@@ -100,7 +100,7 @@ export default function MentorshipPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-20 bg-gradient-to-b from-primary-50 to-warm-50">
+      <section className="pt-32 pb-16 md:pt-40 md:pb-20 bg-gradient-to-b from-primary-50 to-white">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
             <span className="badge-primary mb-4">Індивідуальне менторство</span>
@@ -134,7 +134,7 @@ export default function MentorshipPage() {
               const IconComponent = benefit.icon
               return (
                 <article key={idx} className="text-center">
-                  <div className="w-16 h-16 mx-auto rounded-2xl bg-primary-100 flex items-center justify-center text-primary-600 mb-4">
+                  <div className="w-16 h-16 mx-auto rounded-2xl bg-primary-100 flex items-center justify-center text-primary-700 mb-4">
                     <IconComponent size={24} />
                   </div>
                   <h3 className="text-xl font-display font-semibold text-accent-900 mb-2">
@@ -151,7 +151,7 @@ export default function MentorshipPage() {
       </section>
 
       {/* For Whom */}
-      <section className="section-padding bg-warm-50">
+      <section className="section-padding bg-primary-50/50">
         <div className="container-custom">
           <SectionHeader
             badge="Для кого"
@@ -160,10 +160,10 @@ export default function MentorshipPage() {
 
           <div className="mt-16 grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* For whom */}
-            <div className="card p-6 md:p-8 border-green-200">
+            <div className="card p-6 md:p-8 border-primary-200">
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 rounded-xl bg-green-100">
-                  <Check className="text-green-600" size={20} />
+                <div className="p-2 rounded-xl bg-primary-100">
+                  <Check className="text-primary-700" size={20} />
                 </div>
                 <h3 className="text-xl font-display font-semibold text-accent-900">
                   Менторство для вас, якщо ви:
@@ -172,7 +172,7 @@ export default function MentorshipPage() {
               <ul className="space-y-3">
                 {forWhom.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-accent-700">
-                    <Check size={18} className="text-green-500 mt-0.5 flex-shrink-0" />
+                    <Check size={18} className="text-primary-600 mt-0.5 flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -248,7 +248,7 @@ export default function MentorshipPage() {
                       className={`flex items-start gap-2 text-sm ${feature.included ? 'text-accent-700' : 'text-accent-400'}`}
                     >
                       {feature.included ? (
-                        <Check size={16} className="text-green-500 mt-0.5 flex-shrink-0" />
+                        <Check size={16} className="text-primary-600 mt-0.5 flex-shrink-0" />
                       ) : (
                         <X size={16} className="text-accent-300 mt-0.5 flex-shrink-0" />
                       )}
@@ -376,7 +376,7 @@ export default function MentorshipPage() {
         <div className="container-custom">
           <div className="max-w-2xl mx-auto text-center">
             <div className="flex items-center justify-center gap-3 mb-6">
-              <Calendar className="text-primary-500" size={28} />
+              <Calendar className="text-primary-700" size={28} />
               <h2 className="text-2xl md:text-3xl font-display font-semibold text-accent-900">
                 Або запишіться на дзвінок напряму
               </h2>

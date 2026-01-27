@@ -33,6 +33,7 @@ export function WaitlistForm({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    const form = e.currentTarget // Store reference before async
     setIsSubmitting(true)
 
     // TODO: Netlify Forms integration
@@ -43,7 +44,6 @@ export function WaitlistForm({
     setShowSuccess(true)
 
     // Reset form
-    const form = e.currentTarget
     form.reset()
   }
 
