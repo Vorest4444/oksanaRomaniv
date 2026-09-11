@@ -1,0 +1,6 @@
+export { HeroSection } from './HeroSection'
+export { SocialProofSection } from './SocialProofSection'
+export { HowItWorksSection } from './HowItWorksSection'
+export { FeaturedProductsSection } from './FeaturedProductsSection'
+export { TestimonialsSection } from './TestimonialsSection'
+export { FAQSection } from './FAQSection'
