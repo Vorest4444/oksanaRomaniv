@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { motion, useTransform, type MotionValue } from 'framer-motion';
 import { beliefsConfig } from '@/config/beliefs';
 import { routes } from '@/config/navigation';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 const CARD_W = 500;
 const GAP = 24;
@@ -109,18 +110,34 @@ function BeliefCard({
   title,
   subtitle,
   icon,
+  compact = false,
 }: {
   title: string;
   subtitle: string;
   icon: 'infinity' | 'target' | 'sliders';
+  compact?: boolean;
 }) {
   return (
-    <div className="flex-shrink-0 w-[320px] xl:w-[500px] h-[197px] p-8 flex flex-col gap-[42px] bg-[#F4FAF8] border border-[rgba(16,68,71,0.12)] rounded-2xl">
-      <div className="flex flex-row justify-between items-center h-[72px] gap-6">
-        <h3 className="font-playfair italic text-[36px] leading-[90%] font-medium tracking-[0.01em] text-[#122F35]">
+    <div
+      className={`flex flex-col bg-[#F4FAF8] border border-[rgba(16,68,71,0.12)] rounded-2xl ${
+        compact
+          ? 'w-full gap-6 p-6'
+          : 'h-[197px] w-[500px] flex-shrink-0 gap-[42px] p-8'
+      }`}
+    >
+      <div className={`flex flex-row items-center justify-between gap-6 ${compact ? 'h-[42px]' : 'h-[72px]'}`}>
+        <h3
+          className={`font-playfair italic font-medium leading-[90%] tracking-[0.01em] text-[#122F35] ${
+            compact ? 'text-[24px]' : 'text-[36px]'
+          }`}
+        >
           {title}
         </h3>
-        <div className="flex-shrink-0 w-[72px] h-[72px] flex items-center justify-center">
+        <div
+          className={`flex flex-shrink-0 items-center justify-center ${
+            compact ? 'h-[42px] w-[42px] [&>svg]:h-[42px] [&>svg]:w-[42px]' : 'h-[72px] w-[72px]'
+          }`}
+        >
           <BeliefCardIcon icon={icon} />
         </div>
       </div>
@@ -131,16 +148,28 @@ function BeliefCard({
   );
 }
 
-function CTACard({ title }: { title: string }) {
+function CTACard({ title, compact = false }: { title: string; compact?: boolean }) {
   return (
     <Link
       href={routes.about}
-      className="flex-shrink-0 w-[320px] xl:w-[500px] h-[197px] p-8 flex flex-row justify-between items-center gap-[42px] bg-[#3E857A] border border-[#3E857A] rounded-[16px]"
+      className={`flex flex-row items-center justify-between bg-[#3E857A] border border-[#3E857A] ${
+        compact
+          ? 'w-full gap-5 rounded-2xl p-6'
+          : 'h-[197px] w-[500px] flex-shrink-0 gap-[42px] rounded-[16px] p-8'
+      }`}
     >
-      <span className="font-inter text-[20px] font-medium leading-[120%] tracking-[-0.02em] text-[#EBFFB1]">
+      <span
+        className={`font-inter font-medium leading-[120%] tracking-[-0.02em] text-[#EBFFB1] ${
+          compact ? 'text-[16px]' : 'text-[20px]'
+        }`}
+      >
         {title}
       </span>
-      <div className="flex-shrink-0 w-[56px] h-[56px] flex items-center justify-center text-[#EBFFB1]">
+      <div
+        className={`flex flex-shrink-0 items-center justify-center text-[#EBFFB1] ${
+          compact ? 'h-8 w-8 [&>svg]:h-8 [&>svg]:w-8' : 'h-[56px] w-[56px]'
+        }`}
+      >
         <CTAArrowIcon />
       </div>
     </Link>
@@ -152,27 +181,32 @@ interface BeliefsCardsSliderProps {
 }
 
 export function BeliefsCardsSlider({ progress }: BeliefsCardsSliderProps) {
+  const isDesktop = useMediaQuery('(min-width: 1440px)');
   const x = useTransform(progress, [0, 1], [START_X, END_X]);
+
+  const cards = beliefsConfig.cards.map((card, index) =>
+    card.variant === 'cta' ? (
+      <CTACard key={index} title={card.title} compact={!isDesktop} />
+    ) : (
+      <BeliefCard
+        key={index}
+        title={card.title}
+        subtitle={card.subtitle}
+        icon={card.icon}
+        compact={!isDesktop}
+      />
+    )
+  );
+
+  if (!isDesktop) {
+    return <div className="flex w-full flex-col gap-4">{cards}</div>;
+  }
 
   return (
     <div className="w-full overflow-hidden -mx-4 xl:-mx-8">
       <div className="xl:mx-auto xl:w-[1440px] overflow-hidden">
-        <motion.div
-          className="flex h-[197px] w-fit gap-6 xl:w-[2072px]"
-          style={{ x }}
-        >
-          {beliefsConfig.cards.map((card, index) =>
-            card.variant === 'cta' ? (
-              <CTACard key={index} title={card.title} />
-            ) : (
-              <BeliefCard
-                key={index}
-                title={card.title}
-                subtitle={card.subtitle}
-                icon={card.icon}
-              />
-            )
-          )}
+        <motion.div className="flex h-[197px] w-fit gap-6 xl:w-[2072px]" style={{ x }}>
+          {cards}
         </motion.div>
       </div>
     </div>

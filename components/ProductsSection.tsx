@@ -1,11 +1,12 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowIcon } from '@/components/icons';
 import { productsConfig } from '@/config/products';
 import { routes } from '@/config/navigation';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 const CARD_W = 480;
 const GAP = 24;
@@ -24,7 +25,7 @@ function ProductCard(props: { card: ProductCardItem; index: number }) {
   const href = CARD_HREFS[index];
 
   return (
-    <div className="flex w-[min(100%,480px)] flex-shrink-0 flex-col gap-6 rounded-[24px] border border-[rgba(16,68,71,0.12)] bg-[#F4FAF8] p-6 xl:w-[480px] xl:p-8">
+    <div className="flex w-[327px] xl:w-[480px] flex-shrink-0 flex-col gap-6 rounded-[16px] xl:rounded-[24px] border border-[rgba(16,68,71,0.12)] bg-[#F4FAF8] p-5 xl:p-8">
       <p className="font-inter text-[14px] font-normal uppercase tracking-wide text-[rgba(6,59,54,0.7)]">
         {card.category}
       </p>
@@ -72,7 +73,7 @@ function ProductCard(props: { card: ProductCardItem; index: number }) {
           </span>
         </div>
       ) : null}
-      <div className="mt-auto flex flex-col gap-3 sm:flex-row">
+      <div className="mt-auto flex flex-row gap-2 xl:gap-3">
         <Link
           href={href}
           className="inline-flex flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#3E857A] px-6 py-3 font-sans text-[16px] font-medium text-[#EBFFB1]"
@@ -100,6 +101,9 @@ function ProductCard(props: { card: ProductCardItem; index: number }) {
 
 export function ProductsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+  const isDesktop = useMediaQuery('(min-width: 1440px)');
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -109,26 +113,68 @@ export function ProductsSection() {
 
   const cardsX = useTransform(scrollYProgress, [0.4, 0.9], [0, -SCROLL_TRANSLATE]);
 
+  const onMobileScroll = () => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const cardWidth = 327 + 16;
+    setActive(Math.round(el.scrollLeft / cardWidth));
+  };
+
+  const heading = (
+    <div className="flex flex-col items-center gap-4 xl:gap-[21px] text-center">
+      <p className="font-sans text-[12px] xl:text-[14px] font-normal uppercase text-[#10444780]">
+        / {productsConfig.eyebrow} /
+      </p>
+      <h2 className="font-sans text-[32px] xl:text-[56px] font-semibold leading-[90%] tracking-[-0.01em] text-[#122F35]">
+        {productsConfig.title}{' '}
+        <span className="font-playfair text-[32px] xl:text-[56px] font-medium italic leading-[90%] tracking-[0.01em] text-[#3E857A]">
+          {productsConfig.titleItalic}
+        </span>
+      </h2>
+    </div>
+  );
+
+  if (!isDesktop) {
+    return (
+      <section ref={sectionRef} id="products" className="relative w-full px-4 py-12">
+        <div className="flex w-full flex-col items-center gap-8">
+          {heading}
+          <div className="w-full">
+            <div
+              ref={scrollerRef}
+              onScroll={onMobileScroll}
+              className="scrollbar-hide flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2"
+            >
+              {productsConfig.cards.map((card, index) => (
+                <div key={index} className="snap-center">
+                  <ProductCard card={card} index={index} />
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 flex items-center justify-center gap-1.5 rounded-full bg-white px-1 py-1">
+              {productsConfig.cards.map((_, index) => (
+                <span
+                  key={index}
+                  className={`h-2 w-2 rounded-full ${
+                    index === active ? 'bg-[#194241]' : 'bg-[#2A6F66]/20'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section ref={sectionRef} id="products" className="relative w-full h-[200vh]">
-      <div
-        className="sticky top-[76px] xl:top-[104px] flex h-[calc(100dvh-76px)] xl:h-[calc(100vh-104px)] w-full flex-col items-center overflow-hidden px-4 xl:px-[72px] pt-16 xl:pt-24 pb-24"
-      >
-        <div className="flex w-full max-w-[1296px] flex-col items-center gap-10 xl:gap-[60px]">
-          <div className="flex flex-col items-center gap-[21px] text-center">
-            <p className="font-sans text-[14px] font-normal uppercase text-[#10444780]">
-              / {productsConfig.eyebrow} /
-            </p>
-            <h2 className="font-sans text-[32px] xl:text-[56px] font-semibold leading-[90%] tracking-[-0.01em] text-[#122F35]">
-              {productsConfig.title}{' '}
-              <span className="font-playfair text-[32px] xl:text-[56px] font-medium italic leading-[90%] tracking-[0.01em] text-[#3E857A]">
-                {productsConfig.titleItalic}
-              </span>
-            </h2>
-          </div>
+      <div className="sticky top-[104px] flex h-[calc(100vh-104px)] w-full flex-col items-center overflow-hidden px-[72px] pt-24 pb-24">
+        <div className="flex w-full max-w-[1296px] flex-col items-center gap-[60px]">
+          {heading}
 
-          <div className="w-full overflow-hidden -mx-4 xl:-mx-[72px] xl:w-[calc(100%+144px)]">
-            <div className="xl:mx-auto xl:w-[1440px] overflow-hidden">
+          <div className="-mx-[72px] w-[calc(100%+144px)] overflow-hidden">
+            <div className="mx-auto w-[1440px] overflow-hidden">
               <motion.div
                 className="flex w-fit gap-6"
                 style={{

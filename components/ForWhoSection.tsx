@@ -37,7 +37,7 @@ export function ForWhoSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full min-h-screen xl:min-h-[900px] pt-16 xl:pt-24 pb-24 xl:pb-32"
+      className="relative w-full pt-10 pb-16 xl:min-h-[900px] xl:pt-24 xl:pb-32"
     >
       <div className="xl:w-[1440px] xl:mx-auto xl:px-8 overflow-visible">
         <div className="hidden xl:flex flex-row items-center justify-center gap-0 w-full overflow-visible relative">
@@ -99,32 +99,43 @@ export function ForWhoSection() {
           </motion.div>
         </div>
 
-        <div className="xl:hidden px-5 py-12 bg-[#EBFFB1] rounded-2xl mx-4">
+        <div className="relative xl:hidden mx-4">
+          <div className="relative mb-[-80px] h-[520px] overflow-hidden rounded-none">
+            <Image
+              src={forWhoConfig.photo.src}
+              alt=""
+              fill
+              sizes="100vw"
+              className="object-cover object-top"
+            />
+          </div>
+          <div className="relative z-10 rounded-2xl bg-[#EBFFB1] px-6 py-6">
           <div className="flex flex-col gap-8">
-            <p className="uppercase text-[14px] font-normal text-[#194241] font-sans">
+            <p className="uppercase text-[12px] font-normal text-[#194241] font-sans">
               / {forWhoConfig.eyebrow} /
             </p>
             <div className="flex flex-col">
               <h2 className="font-sans text-[32px] font-normal text-[#122F35] leading-[100%]">
                 {forWhoConfig.title}
               </h2>
-              <span className="font-playfair font-medium italic text-[28px] leading-[100%] text-[#122F35]" style={{ letterSpacing: '0.01em' }}>
+              <span className="font-playfair font-medium italic text-[32px] leading-[100%] text-[#122F35]" style={{ letterSpacing: '0.01em' }}>
                 {forWhoConfig.titleItalic}
               </span>
             </div>
             <ul className="flex flex-col gap-4 list-none p-0 m-0">
               {forWhoConfig.listItems.map((item, index) => (
-                <li key={index} className="flex flex-row items-center gap-4">
+                <li key={index} className="flex flex-row items-start gap-3">
                   <div
-                    className="flex-shrink-0 bg-[#122F35]"
-                    style={{ width: 24, height: 1 }}
+                    className="flex-shrink-0 bg-[#122F35] mt-[10px]"
+                    style={{ width: 14, height: 1 }}
                   />
-                  <span className="font-inter text-[16px] font-normal leading-[120%] text-[#194241]">
+                  <span className="font-inter text-[14px] font-normal leading-[120%] text-[#194241]">
                     {item}
                   </span>
                 </li>
               ))}
             </ul>
+          </div>
           </div>
         </div>
       </div>

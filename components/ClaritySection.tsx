@@ -75,14 +75,14 @@ export function ClaritySection() {
 
           {/* A2) Description Container */}
           <div className="w-full max-w-[1296px] min-h-[56px] flex flex-col xl:flex-row justify-between xl:items-center items-start gap-8">
-            <div className="w-full max-w-[524px] min-h-[54px] font-inter text-[18px] font-normal leading-[150%] tracking-[-0.02em] text-[#10444780]">
+            <div className="w-full max-w-[524px] min-h-[54px] font-inter text-[16px] xl:text-[18px] font-normal leading-[150%] tracking-[-0.02em] text-[#10444780]">
               Я пропоную тобі пройти <span className="font-bold text-[#122F35]">безкоштовний урок</span>, що дає ясність.
               <br />
               Побач, де ти зараз і який твій наступний крок.
             </div>
             <button
               type="button"
-              className="h-14 w-full xl:w-[247px] flex flex-row items-center justify-center gap-[10px] border border-[#122F35] rounded-[100px] px-6 bg-transparent whitespace-nowrap"
+              className="hidden xl:flex h-14 w-[247px] flex-row items-center justify-center gap-[10px] border border-[#122F35] rounded-[100px] px-6 bg-transparent whitespace-nowrap"
             >
               <span className="font-sans text-[16px] font-medium text-[#122F35]">
                 Отримати безкоштовно
@@ -158,6 +158,17 @@ export function ClaritySection() {
             </div>
           </div>
         </div>
+        <button
+          type="button"
+          className="flex xl:hidden h-[52px] w-full flex-row items-center justify-center gap-3 border border-[#122F35] rounded-[100px] px-6 bg-transparent"
+        >
+          <span className="font-sans text-[16px] font-medium text-[#122F35]">
+            Отримати безкоштовно
+          </span>
+          <span className="w-[18px] h-[18px] flex shrink-0 [&>svg]:w-[18px] [&>svg]:h-[18px]">
+            <ArrowIcon color="#122F35" />
+          </span>
+        </button>
       </div>
     </section>
   );

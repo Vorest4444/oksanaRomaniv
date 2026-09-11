@@ -83,9 +83,9 @@ export function TestimonialsSection() {
     <section className="w-full flex justify-center px-5 xl:px-[72px] py-16 xl:py-24">
       <div className="w-full max-w-[1296px] flex flex-col xl:flex-row xl:gap-[61px] gap-8">
         {/* Left column */}
-        <div className="w-full xl:w-[489px] flex flex-col gap-8 flex-shrink-0">
-            <div className="flex flex-col gap-[21px] overflow-visible">
-              <p className="font-sans text-[14px] font-normal uppercase text-[#194241]">
+        <div className="w-full xl:w-[489px] flex flex-col gap-8 flex-shrink-0 order-1">
+            <div className="flex flex-col gap-4 xl:gap-[21px] overflow-visible">
+              <p className="font-sans text-[12px] xl:text-[14px] font-normal uppercase text-[#194241]">
                 / {testimonialsConfig.eyebrow} /
               </p>
               <h2 className="font-sans text-[32px] xl:text-[56px] font-semibold leading-[90%] tracking-[-0.01em] text-[#122F35]">
@@ -97,7 +97,7 @@ export function TestimonialsSection() {
               </h2>
             </div>
 
-            <div className="flex flex-row items-center gap-4 mt-8 xl:mt-[88px]">
+            <div className="hidden xl:flex flex-row items-center gap-4 mt-[88px]">
               <div className="relative w-[72px] h-[72px] rounded-xl overflow-hidden flex-shrink-0 bg-[#F4FAF8]">
                 {current.avatar ? (
                   <Image
@@ -121,7 +121,7 @@ export function TestimonialsSection() {
               </div>
             </div>
 
-            <div className="flex flex-row gap-3">
+            <div className="hidden xl:flex flex-row gap-3">
               <button
                 type="button"
                 onClick={goPrev}
@@ -147,12 +147,58 @@ export function TestimonialsSection() {
         <div className="hidden xl:block w-px flex-shrink-0 bg-[rgba(16,68,71,0.12)] self-stretch" />
 
         {/* Right column - testimonial */}
-        <div className="w-full xl:w-[746px] flex-shrink-0 flex flex-col min-w-0 xl:justify-center">
+        <div className="w-full xl:w-[746px] flex-shrink-0 flex flex-col min-w-0 xl:justify-center order-2">
           <div
             key={index}
-            className="font-inter text-[19px] font-medium leading-[120%] tracking-[-0.02em] text-[#122F35] whitespace-pre-line animate-fade-in xl:w-[746px] xl:min-h-[345px]"
+            className="font-inter text-[16px] xl:text-[19px] font-medium leading-[130%] xl:leading-[120%] tracking-[-0.02em] text-[#122F35] whitespace-pre-line animate-fade-in xl:w-[746px] xl:min-h-[345px]"
           >
             {current.text}
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-6 order-3 xl:hidden">
+          <div className="flex flex-row items-center gap-3.5">
+            <div className="relative w-[62px] h-[62px] rounded-xl overflow-hidden flex-shrink-0 bg-[#F4FAF8]">
+              {current.avatar ? (
+                <Image
+                  src={current.avatar}
+                  alt={current.name}
+                  width={62}
+                  height={62}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <span className="flex h-full w-full items-center justify-center font-inter text-[16px] font-medium text-[rgba(6,59,54,0.7)]">
+                  {initials(current.name)}
+                </span>
+              )}
+            </div>
+            <div className="flex flex-col gap-2">
+              <p className="font-inter text-[16px] font-medium text-[#122F35]">{current.name}</p>
+              <p className="font-inter text-[14px] font-normal text-[rgba(6,59,54,0.6)]">
+                {current.subtitle}
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-row justify-center gap-6">
+            <button
+              type="button"
+              onClick={goPrev}
+              disabled={isFirst}
+              aria-label="Попередній відгук"
+              className="w-[52px] h-[52px] rounded-full border border-[#122F35] bg-transparent flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <ChevronLeftIcon color="#122F35" />
+            </button>
+            <button
+              type="button"
+              onClick={goNext}
+              disabled={isLast}
+              aria-label="Наступний відгук"
+              className="w-[52px] h-[52px] rounded-full border border-[#122F35] bg-transparent flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <ChevronRightIcon color="#122F35" />
+            </button>
           </div>
         </div>
       </div>

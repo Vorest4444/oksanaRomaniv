@@ -19,7 +19,7 @@ export default function Home() {
       <Header />
       <main className="pt-header-mobile xl:pt-header">
         <Hero />
-        <div className="mt-[80px] xl:mt-[90px] 2xl:mt-[100px]">
+        <div className="mt-8 xl:mt-[90px] 2xl:mt-[100px]">
           <ScrollFadeSection />
         </div>
         <ForWhoSection />
