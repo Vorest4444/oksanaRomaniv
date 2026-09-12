@@ -51,6 +51,7 @@ function Title() {
       as="p"
       segments={footerConfig.titleSegments}
       className="font-sans text-[24px] xl:text-[48px] font-normal leading-[1.2] tracking-[-0.01em] text-white/80"
+      italicClassName="!text-[#EBFFB1]"
     />
   );
 }

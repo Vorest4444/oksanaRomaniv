@@ -3,12 +3,9 @@ import Image from 'next/image';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { ClosingCta } from '@/components/ClosingCta';
+import { AboutManifesto } from '@/components/AboutManifesto';
 import { Container, CtaButton, MixedTitle, SectionEyebrow } from '@/components/ui';
 import {
-  StepIcon,
-  PlantIcon,
-  PersonIcon,
-  WorldIcon,
   UsersIcon,
   BriefcaseIcon,
   HandHeartIcon,
@@ -20,13 +17,6 @@ export const metadata: Metadata = {
   title: 'Про мене — Оксана Романів',
   description: aboutConfig.hero.description,
 };
-
-const manifestoIcons = {
-  step: StepIcon,
-  plant: PlantIcon,
-  person: PersonIcon,
-  world: WorldIcon,
-} as const;
 
 const journeyIcons = {
   users: UsersIcon,
@@ -47,6 +37,7 @@ function Hero() {
               as="h1"
               segments={hero.titleSegments}
               className="font-heading text-[32px] xl:text-[56px] font-medium leading-none tracking-[0.01em] text-[#0F3F42]"
+              italicClassName="font-medium text-[#3E857A]"
             />
             <p className="max-w-[526px] font-inter text-[14px] xl:text-[16px] font-normal leading-[1.3] tracking-[-0.02em] text-brand-dark/80">
               {hero.description}
@@ -71,33 +62,6 @@ function Hero() {
           ))}
         </ul>
       </div>
-    </section>
-  );
-}
-
-function Manifesto() {
-  return (
-    <section className="bg-brand-green py-20 xl:py-[250px]">
-      <Container>
-        <div className="mx-auto flex max-w-[455px] flex-col gap-4 xl:gap-5">
-          {aboutConfig.manifesto.lines.map((line, index) => {
-            const Icon = manifestoIcons[line.icon];
-            return (
-              <p
-                key={index}
-                className="flex flex-wrap items-center gap-x-3 gap-y-1 font-inter text-[18px] xl:text-[24px] leading-[1.5] tracking-[-0.02em] text-brand-lime/60"
-              >
-                {line.highlight && (
-                  <span className="font-medium text-brand-lime">{line.highlight}</span>
-                )}
-                {line.rest && <span>{line.rest.trim()}</span>}
-                <Icon size={28} className="flex-shrink-0 text-brand-lime" />
-                {line.tail && <span>{line.tail}</span>}
-              </p>
-            );
-          })}
-        </div>
-      </Container>
     </section>
   );
 }
@@ -212,7 +176,7 @@ export default function AboutPage() {
       <Header />
       <main>
         <Hero />
-        <Manifesto />
+        <AboutManifesto />
         <Story />
         <Journey />
         <ClosingCta />

@@ -64,11 +64,11 @@ export function ClaritySection() {
         {/* A) SECTION HEADER */}
         <div className="w-full max-w-[1296px] min-h-[173px] flex flex-col items-start gap-8">
           {/* A1) Subheader Container */}
-          <div className="w-full max-w-[416px] min-h-[85px] flex flex-col justify-end items-start gap-[21px]">
+          <div className="flex min-h-[85px] w-fit max-w-full flex-col items-start justify-end gap-[21px]">
             <div className="flex flex-row items-center gap-1 h-[14px] font-sans text-[14px] font-normal uppercase text-[#10444780]">
               / НЕ ЗНАЄШ, З ЧОГО ПОЧАТИ? /
             </div>
-            <h2 className="w-full font-sans text-[32px] xl:text-[56px] font-medium leading-[90%] tracking-[-0.01em] text-[#122F35]">
+            <h2 className="whitespace-nowrap font-sans text-[32px] xl:text-[56px] font-medium leading-[90%] tracking-[-0.01em] text-[#122F35]">
               Почни з <span className="font-playfair text-[32px] xl:text-[56px] font-medium italic leading-[90%] tracking-[0.01em] text-[#3E857A]">ясності</span>
             </h2>
           </div>

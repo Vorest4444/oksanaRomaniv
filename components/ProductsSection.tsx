@@ -134,7 +134,7 @@ export function ProductsSection() {
       <p className="font-sans text-[12px] xl:text-[14px] font-normal uppercase text-[#10444780]">
         / {productsConfig.eyebrow} /
       </p>
-      <h2 className="font-sans text-[32px] xl:text-[56px] font-semibold leading-[90%] tracking-[-0.01em] text-[#122F35]">
+      <h2 className="font-sans text-[32px] xl:text-[56px] font-medium leading-[90%] tracking-[-0.01em] text-[#122F35]">
         {productsConfig.title}{' '}
         <span className="font-playfair text-[32px] xl:text-[56px] font-medium italic leading-[90%] tracking-[0.01em] text-[#3E857A]">
           {productsConfig.titleItalic}

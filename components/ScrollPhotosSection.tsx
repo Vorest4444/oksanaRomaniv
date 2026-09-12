@@ -82,8 +82,8 @@ function Stage({
   progress: MotionValue<number>;
   secondary: { label: string; href: string };
 }) {
-  const contentOpacity = useTransform(progress, [0.35, 0.7], [0, 1]);
-  const contentY = useTransform(progress, [0.35, 0.7], [16, 0]);
+  const contentOpacity = useTransform(progress, [0.4, 0.95], [0, 1]);
+  const contentY = useTransform(progress, [0.4, 0.95], [16, 0]);
 
   return (
     <div
@@ -156,8 +156,8 @@ export function ScrollPhotosSection() {
     layoutEffect: false,
   });
 
-  // Fan out as soon as the scene pins, hold, then gather back before the footer.
-  const spread = useTransform(scrollYProgress, [0, 0.32, 0.58, 0.92], [0, 1, 1, 0]);
+  // Fan out across the whole pin, then the section unpins — no leftover scroll.
+  const spread = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   const eased = useTransform(spread, (value) => {
     const clamped = Math.min(1, Math.max(0, value));
@@ -173,7 +173,7 @@ export function ScrollPhotosSection() {
     <section
       ref={sectionRef}
       className="relative w-full bg-brand-green-50"
-      style={{ height: reduceMotion ? '100dvh' : '280vh' }}
+      style={{ height: reduceMotion ? '100dvh' : '165vh' }}
     >
       <div className="sticky top-0 h-dvh w-full overflow-hidden">
         <div className="relative hidden h-full w-full lg:block">

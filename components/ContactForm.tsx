@@ -129,7 +129,7 @@ export function ContactForm() {
           value={values.message}
           onChange={(event) => update('message')(event.target.value)}
           placeholder={fields.message.placeholder}
-          className={`${fieldClass} h-auto rounded-3xl py-4`}
+          className="min-h-[160px] w-full resize-y rounded-2xl border border-brand-teal/20 bg-white px-6 py-4 font-inter text-[16px] text-brand-dark placeholder:text-brand-dark/40 focus:border-brand-green focus:outline-none"
         />
       </label>
 

@@ -52,28 +52,28 @@ export function ScrollFadeSection() {
   const lineColors = [line1Color, line2Color, line3Color];
 
   return (
-    <section ref={sectionRef} className={isDesktop ? 'w-full h-[220vh]' : 'w-full'}>
+    <section ref={sectionRef} className={isDesktop ? 'w-full h-[160vh]' : 'w-full'}>
       <div
         className={
           isDesktop
-            ? 'sticky top-[104px] flex h-[calc(100vh-104px)] w-full flex-col items-start justify-start overflow-hidden px-8 pt-[120px]'
+            ? 'sticky top-[104px] flex h-auto w-full flex-col items-start justify-start overflow-hidden px-8 pb-8 pt-12'
             : 'flex w-full flex-col items-start px-4 pt-6 pb-4'
         }
       >
-        <div className="mx-auto w-full max-w-[779px] flex flex-col items-center text-center gap-8 xl:gap-[60px]">
-          <div className="w-full flex flex-col items-center">
-            <p className="text-[14px] uppercase tracking-wide text-[#194241] font-sans mb-[21px]">
+        <div className="mx-auto flex w-full max-w-[779px] flex-col items-center gap-4 text-center xl:gap-6">
+          <div className="flex w-full flex-col items-center">
+            <p className="mb-3 font-sans text-[14px] uppercase tracking-wide text-[#194241] xl:mb-4">
               / {beliefsConfig.eyebrow} /
             </p>
-            <h2 className="text-[32px] xl:text-[56px] font-medium leading-[90%] tracking-[0.01em] text-[#122F35] text-center">
+            <h2 className="text-center text-[32px] font-medium leading-[90%] tracking-[0.01em] text-[#122F35] xl:text-[56px]">
               {beliefsConfig.titleParts[0]}{' '}
-              <span className="font-playfair italic text-[32px] xl:text-[56px] leading-[90%] tracking-[0.01em] text-[#3D7F74]">
+              <span className="font-playfair italic text-[32px] leading-[90%] tracking-[0.01em] text-[#3D7F74] xl:text-[56px]">
                 {beliefsConfig.titleParts[1]}
               </span>
             </h2>
           </div>
 
-          <div className="flex flex-col gap-4 w-full max-w-[779px] text-center">
+          <div className="flex w-full max-w-[779px] flex-col gap-1 text-center xl:gap-2">
             {beliefsConfig.lines.map((line, index) => (
               <motion.p
                 key={index}

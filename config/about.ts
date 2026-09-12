@@ -21,7 +21,7 @@ export const aboutConfig = {
     lines: [
       { highlight: 'Мій підхід', rest: ' називається ', icon: 'step', tail: 'From the' },
       { highlight: 'Ground Up', rest: ' — коли ', icon: 'plant', tail: 'ріст починається' },
-      { highlight: 'з людини', rest: '', icon: 'person', tail: 'а вже потім переходить у' },
+      { highlight: '', rest: 'з людини', icon: 'person', tail: 'а вже потім переходить у' },
       { highlight: '', rest: 'роботу, проєкти та спільноти', icon: 'world', tail: '' },
     ],
   },

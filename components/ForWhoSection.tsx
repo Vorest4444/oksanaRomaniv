@@ -42,7 +42,7 @@ export function ForWhoSection() {
       <div className="xl:w-[1440px] xl:mx-auto xl:px-8 overflow-visible">
         <div className="hidden xl:flex flex-row items-center justify-center gap-0 w-full overflow-visible relative">
           <motion.div
-            className="flex-shrink-0 relative overflow-hidden rounded-l-2xl"
+            className="flex-shrink-0 relative overflow-hidden rounded-2xl"
             style={{
               width: PHOTO_W,
               height: PHOTO_H,

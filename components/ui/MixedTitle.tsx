@@ -24,7 +24,10 @@ export function MixedTitle({
     <Component className={`whitespace-pre-line ${className}`.trim()}>
       {segments.map((segment, index) =>
         segment.italic ? (
-          <span key={index} className={`font-playfair italic ${italicClassName}`.trim()}>
+          <span
+            key={index}
+            className={`font-playfair italic text-[#3E857A] ${italicClassName}`.trim()}
+          >
             {segment.text}
           </span>
         ) : (
